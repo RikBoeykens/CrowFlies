@@ -1,0 +1,10 @@
+<div>
+    <div class="col-xs-10">
+        Direction: {{destination.haversine.angle|windDirection}} <br />
+        Distance: {{destination.haversine.distance|distanceFilter}} <br />
+        <div ng-show="(2.5*accuracy)>destination.haversine.distance" style="color:red">Possibly inaccurate</div>
+    </div>
+    <div class="col-xs-2">
+        <span class="glyphicon glyphicon-upload" rotate degrees="destination.haversine.angle" id="arrow" ng-style={'color':(destination.haversine.distance|distanceColour)}></span>
+    </div>
+</div>
