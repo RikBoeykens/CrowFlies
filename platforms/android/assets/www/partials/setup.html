@@ -1,14 +1,14 @@
 <h2>Set Up</h2>
 <div>
-    <label ng-show="!currentPosition" class="blink">*Determining position*</label>
+    <label ng-show="!currentPosition()" class="blink">*Determining position*</label>
 </div>
-<li ng-repeat="destination in destinations" id="destinationList">
+<li ng-repeat="destination in destinations()" id="destinationList">
     <div id="radioLabel" ng-class="{selectedLabel:destination==selectedDest}" ng-click="selectDestination(destination)">
         {{destination.name}}
     </div>
 </li>
 <div>
-    <label ng-hide="destinations.length">No markers, please add markers by tapping '+'</label>
+    <label ng-hide="destinations().length">No markers, please add markers by tapping '+'</label>
 </div>
 
 <div class="col-xs-8" ng-show="adding">
@@ -20,7 +20,7 @@
 </div>
 <div class="col-xs-4" style="float:right">
     <div class="btn-group" style="float:right">
-        <button type="button" class="btn btn-primary" ng-click="startAdding()" ng-disabled="!currentPosition||adding">
+        <button type="button" class="btn btn-primary" ng-click="startAdding()" ng-disabled="!currentPosition()||adding">
             <span class="glyphicon glyphicon-plus"></span>
         </button>
         <button type="button" class="btn btn-warning" ng-click="deleteDestination(selectedDest)" ng-disabled="!selectedDest">
@@ -28,4 +28,4 @@
         </button>
     </div>
 </div>
-<div id="map-canvas" ng-init="initializeMap()"></div>
+<div setup-Map></div>
