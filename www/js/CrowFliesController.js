@@ -2,9 +2,9 @@
 
 var app = angular.module("crowFlies");
 
-app.controller('CrowFliesController', function ($scope, $rootScope, geolocate, haversine, destinationManager) {
+app.controller('CrowFliesController', function ($scope, $rootScope, geolocate, haversine, aviaryService) {
     $scope.currentPosition = geolocate.getCurrentPosition;
-    $scope.destinations = destinationManager.getDestinations;
+    $scope.nests = aviaryService.getNests;
     $scope.showPosition = function(){
         geolocate.updatePosition();
     };

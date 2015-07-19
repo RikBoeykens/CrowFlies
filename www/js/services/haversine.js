@@ -2,16 +2,16 @@
 
 var app = angular.module("crowFlies");
 
-app.factory('haversine', function ($rootScope, $q) {
+app.factory('haversine', function () {
   return {
     getInfo: function(fromCoord, toCoord){
         return{angle:this.getAngle(fromCoord, toCoord),
                distance:this.getDistance(fromCoord, toCoord)};
     },
     getAngle: function(fromCoord, toCoord){
-        var φ1 = fromCoord.latitude.toRadians();
-        var φ2 = toCoord.latitude.toRadians();
-        var Δλ = (toCoord.longitude-fromCoord.longitude).toRadians();
+        var φ1 = fromCoord.lat.toRadians();
+        var φ2 = toCoord.lat.toRadians();
+        var Δλ = (toCoord.lng-fromCoord.lng).toRadians();
 
         var y = Math.sin(Δλ) * Math.cos(φ2);
         var x = Math.cos(φ1)*Math.sin(φ2) -
@@ -22,8 +22,8 @@ app.factory('haversine', function ($rootScope, $q) {
     },
     getDistance: function(fromCoord, toCoord){
         var R = 6371e3;
-        var φ1 = fromCoord.latitude.toRadians(),  λ1 = fromCoord.longitude.toRadians();
-        var φ2 = toCoord.latitude.toRadians(), λ2 = toCoord.longitude.toRadians();
+        var φ1 = fromCoord.lat.toRadians(),  λ1 = fromCoord.lng.toRadians();
+        var φ2 = toCoord.lat.toRadians(), λ2 = toCoord.lng.toRadians();
         var Δφ = φ2 - φ1;
         var Δλ = λ2 - λ1;
 

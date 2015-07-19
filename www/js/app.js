@@ -12,9 +12,13 @@ app.config(function($routeProvider){
             templateUrl: "partials/setup.html",
             controller: "SetupController"
         })
-        .when("/crowflies", {
-            templateUrl: "partials/crowflies.html",
-            controller: "CrowFliesController"
+        .when("/aviary/:aviaryId", {
+            templateUrl: "js/aviaries/showAviary.html",
+            controller: "ShowAviaryCtrl"
+        })
+        .when("/nest/:nestId", {
+            templateUrl: "js/nests/showNest.html",
+            controller: "ShowNestCtrl"
         })
         .otherwise({redirectTo:"/main"});
 });
