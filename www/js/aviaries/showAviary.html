@@ -4,14 +4,18 @@
   <label><input type="checkbox" value="false" ng-model="continuousUpdates" >Continuous updates</label>
 </div>
 <br />
+<h3>{{aviary().name}}</h3>
+<img src="{{aviary().image}}" />
+<p><i>{{aviary().description}}</i></p>
 <accordion>
-    <accordion-group heading="{{destination.name}}" ng-repeat="destination in aviary().nests | orderBy:'haversine.distance'" >
-        <destination destination="destination" accuracy="currentPosition().coords.accuracy"></destination>
+    <accordion-group heading="{{nest.name}}" ng-repeat="nest in aviary().nests | orderBy:'haversine.distance'" >
+        <nest-directive nest="nest" accuracy="currentPosition().coords.accuracy"></destination>
     </accordion-group>
 </accordion>
 <div>
     <label ng-hide="aviary().nests.length">No markers, please add markers in the setup page</label>
 </div>
+<map id="map_canvas" control="mapsControl"></map>
 <div id="LocationInfo">
     Location last retrieved at {{currentPosition().timestamp | date:'medium'}}
 </div>

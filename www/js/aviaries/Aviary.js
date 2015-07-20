@@ -6,7 +6,7 @@ app.factory('Aviary', ['Nest', function (Nest){
 	function Aviary(id, name, description, image, nests){
 		this.id = id;
 		this.name = name;
-		this.descripton = description;
+		this.description = description;
 		this.image = image;
 		this.nests = nests;
 	};
