@@ -8,7 +8,11 @@ app.config(function($routeProvider){
             templateUrl: "js/main/main.html",
             controller: "MainCtrl"
         })
-        .when("/aviary/:aviaryId", {
+        .when("/aviary/selectAviary", {
+            templateUrl: "js/aviaries/selectAviary.html",
+            controller: "SelectAviaryCtrl"
+        })
+        .when("/aviary/showAviary", {
             templateUrl: "js/aviaries/showAviary.html",
             controller: "ShowAviaryCtrl"
         })

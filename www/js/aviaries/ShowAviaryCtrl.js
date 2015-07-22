@@ -2,10 +2,13 @@
 
 var app = angular.module("crowFlies");
 
-app.controller('ShowAviaryCtrl',['$scope', '$routeParams', '$timeout', 'geolocate', 'haversine', 'aviaryService', function ($scope, $routeParams, $timeout, geolocate, haversine, aviaryService) {
-  aviaryService.fetchAviary($routeParams.aviaryId);  
+app.controller('ShowAviaryCtrl',['$scope', '$location', '$timeout', 'geolocate', 'aviaryService', function ($scope, $location, $timeout, geolocate, aviaryService) {
+	if (aviaryService.getAviary()==null){
+		$location.path('/aviary/selectAviary')
+	}
 	$scope.mapsControl = {
 		options:{
+			nests: aviaryService.getAviary().nests
 		}
   };
 	$timeout(function(){

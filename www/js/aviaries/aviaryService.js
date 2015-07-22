@@ -29,7 +29,7 @@ app.service('aviaryService',['$filter','haversine', 'apiAviaryRepository', 'Avia
 			aviary.updateHaversine(position);
 	};
 	this.fetchAviary = function(aviaryid){
-		apiAviaryRepository.getAviary(aviaryid)
+		var promise = apiAviaryRepository.getAviary(aviaryid)
 			.then(function(apiAviary){
 				var nests = [];
 				angular.forEach(apiAviary.data.nests, function(nest){
@@ -37,6 +37,7 @@ app.service('aviaryService',['$filter','haversine', 'apiAviaryRepository', 'Avia
 					nests.push(newNest);
 				})
 				aviary = new Aviary(apiAviary.data.slug, apiAviary.data.name, apiAviary.data.description, apiAviary.data.image, nests);						
-		});		
+		});
+		return promise;
 	}
 }]);

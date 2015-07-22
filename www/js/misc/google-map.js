@@ -62,29 +62,15 @@ angular.module("crowFlies")
 			scope.markers=[];
 
 			scope.internalControl.addMarkers = function(nests){
-				bounds = new google.maps.LatLngBounds();
 				angular.forEach(nests, function(nest){
-					var coords = getLatLng(nest);
+					var coords = getLatLng(nest.coordinates);
 					var marker = new google.maps.Marker({
 						position:coords,
 						map:scope.internalControl.map,
 						title:nest.name
 					 });
-					bounds.extend(coords);
-					marker.infowindow = new google.maps.InfoWindow({
-						content: getContentForNest(nest)
-					});
-					google.maps.event.addListener(marker, 'click', function() {
-						marker.infowindow.open(scope.internalControl.map,marker);
-					});
 					scope.markers.push(marker);
 				})
-				if (nests.length>1)
-					scope.internalControl.map.fitBounds(bounds);
-				else{
-					scope.internalControl.map.setCenter(scope.markers[0].position);
-					scope.internalControl.map.setZoom(16);
-				}
 			}
 
 		}
