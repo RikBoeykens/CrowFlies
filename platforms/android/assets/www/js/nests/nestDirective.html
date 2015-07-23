@@ -1,0 +1,11 @@
+<div>
+    <div class="col-xs-10">
+        Direction: {{nest.haversine.angle|windDirection}} <br />
+        Distance: {{nest.haversine.distance|distanceFilter}} <br />
+        <div ng-show="(2.5*accuracy)>nest.haversine.distance" style="color:red">Possibly inaccurate</div>
+    </div>
+    <div class="col-xs-2">
+        <span class="glyphicon glyphicon-upload" rotate degrees="nest.haversine.angle" id="arrow" ng-style={'color':(nest.haversine.distance|distanceColour)}></span>
+    </div>
+	<i><a href="#/nest/{{nest.id}}">More information</a></i>
+</div>

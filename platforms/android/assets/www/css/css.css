@@ -44,3 +44,10 @@ body{
   -webkit-animation-timing-function: cubic-bezier(.5, 0, 1, 1);
   -webkit-animation-duration: 1.7s; 
 }
+
+#map_canvas {
+    margin: 0;
+    padding: 0;
+    height: 500px;
+    border: 1px solid #ccc;
+}
