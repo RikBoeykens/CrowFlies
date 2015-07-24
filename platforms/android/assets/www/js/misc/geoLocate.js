@@ -7,7 +7,7 @@ app.service('geolocate', ['$rootScope', '$cordovaGeolocation', 'aviaryService', 
     var setCurrentPosition = function(position){
 			currentPosition = position;
 			aviaryService.updatePosition(new Coordinates(currentPosition.coords.latitude, currentPosition.coords.longitude));
-			$rootScope.$broadcast('positon:updated', position);
+			$rootScope.$broadcast('position:updated', position);
     }
     this.getCurrentPosition = function(){
         return currentPosition;

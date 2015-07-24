@@ -74,19 +74,19 @@ angular.module("crowFlies")
 				})
 			}
 			
-			scope.internalControl.updateCurrentPositionMarker=function(position){
-				if (!currentPositionMarker){
-					createCurrenPositionMarker(position);
-				}else{
-					currentPositionMarker.position = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-				}
-			}
-			function createCurrentPositionMarker(position){
+			var createCurrentPositionMarker = function (position){
 				currentPositionMarker = new google.maps.Marker({
 					position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
 					map: scope.internalControl.map,
 					icon:'img/small-circle.png'
 				})
+			}
+			scope.internalControl.updateCurrentPositionMarker=function(position){
+				if (!currentPositionMarker){
+					createCurrentPositionMarker(position);
+				}else{
+					currentPositionMarker.setPosition(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+				}
 			}
 
 		}
