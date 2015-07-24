@@ -85,7 +85,7 @@ angular.module("crowFlies")
 				currentPositionMarker = new google.maps.Marker({
 					position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
 					map: scope.internalControl.map,
-					icon:'/img/small-circle.png'
+					icon:'img/small-circle.png'
 				})
 			}
 
