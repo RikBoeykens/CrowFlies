@@ -32,6 +32,7 @@ angular.module("crowFlies")
 					});            
 				}else{
 					displayOnMap(geolocate.getCurrentPosition());
+					updateCurrentPositionMarker(position);
 				};
 				
 				if (scope.internalControl.options.nests){

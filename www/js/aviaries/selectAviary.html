@@ -1,5 +1,12 @@
-<h2>Select Aviary</h2>
+<h2>Aviaries</h2>
 
+<label>Search aviaries</label>
 <input type="text" ng-model="aviaryid" />
-<button type="button" class="btn btn-success" ng-click="getAviary()">Go</button>
+<button type="button" class="btn btn-success" ng-click="getAviary(aviaryid)">Go</button> 
+<br />
+<div ng-repeat="aviary in recentAviaries()|orderBy:'lastAccessed':true">
+	<i>{{aviary.name}}</i>
+	last seen: {{aviary.lastAccessed| date:'medium'}}
+	<button type="button" class="btn btn-success" ng-click="getAviary(aviary.id)">Go</button>
+</div>
 <p style="color:red">{{error}}</p>
