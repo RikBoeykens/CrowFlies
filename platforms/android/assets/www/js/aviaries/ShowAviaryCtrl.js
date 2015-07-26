@@ -8,7 +8,8 @@ app.controller('ShowAviaryCtrl',['$scope', '$location', '$timeout', 'geolocate',
 	}
 	$scope.mapsControl = {
 		options:{
-			nests: aviaryService.getAviary().nests
+			nests: aviaryService.getAviary().nests,
+			centre: geolocate.getCurrentPosition()
 		}
   };
 	$timeout(function(){

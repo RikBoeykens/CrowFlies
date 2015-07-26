@@ -2,7 +2,7 @@
 
 var app = angular.module("crowFlies");
 
-app.service('aviaryService',['$filter','haversine', 'apiAviaryRepository', 'Aviary', 'Nest', 'Coordinates', function ($filter, haversine, apiAviaryRepository, Aviary, Nest, Coordinates) {
+app.service('aviaryService',['$filter', '$rootScope', 'haversine', 'apiAviaryRepository', 'Aviary', 'Nest', 'Coordinates', function ($filter, $rootScope, haversine, apiAviaryRepository, Aviary, Nest, Coordinates) {
 	var aviary;
 	var currentPosition;
 	var recentAviaries=[];
@@ -34,7 +34,10 @@ app.service('aviaryService',['$filter','haversine', 'apiAviaryRepository', 'Avia
 			recentAviaries.push(aviary);			
 		}
 	}
-	this.updatePosition=function(position){
+	$rootScope.$on('position:updated', function(event, position){
+		updatePosition(new Coordinates(position.coords.latitude, position.coords.longitude));
+	})
+	var updatePosition=function(position){
 			currentPosition=position;
 			updateHaversine(position);
 	}
@@ -46,7 +49,7 @@ app.service('aviaryService',['$filter','haversine', 'apiAviaryRepository', 'Avia
 			.then(function(apiAviary){
 				var nests = [];
 				angular.forEach(apiAviary.data.nests, function(nest){
-					var newNest = new Nest(nest.id, nest.name, nest.description, nest.image, nest.lat, nest.lng);
+					var newNest = new Nest(nest.id, nest.name, nest.description, nest.image, nest.lat, nest.lng, currentPosition);
 					nests.push(newNest);
 				})
 				aviary = new Aviary(apiAviary.data.slug, apiAviary.data.name, apiAviary.data.description, apiAviary.data.image, nests);	

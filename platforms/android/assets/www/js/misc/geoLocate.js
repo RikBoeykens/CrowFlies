@@ -2,11 +2,10 @@
 
 var app = angular.module("crowFlies");
 
-app.service('geolocate', ['$rootScope', '$cordovaGeolocation', 'aviaryService', 'Coordinates', function ($rootScope, $cordovaGeolocation, aviaryService, Coordinates) {
+app.service('geolocate', ['$rootScope', '$cordovaGeolocation', 'Coordinates', function ($rootScope, $cordovaGeolocation, Coordinates) {
     var currentPosition;
     var setCurrentPosition = function(position){
 			currentPosition = position;
-			aviaryService.updatePosition(new Coordinates(currentPosition.coords.latitude, currentPosition.coords.longitude));
 			$rootScope.$broadcast('position:updated', position);
     }
     this.getCurrentPosition = function(){

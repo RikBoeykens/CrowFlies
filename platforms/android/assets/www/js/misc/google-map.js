@@ -22,7 +22,7 @@ angular.module("crowFlies")
 
 				// create map
 				scope.internalControl.map = new google.maps.Map(document.getElementById(attrs.id), map_options);
-	
+				
 				if(!geolocate.getCurrentPosition()){
 					geolocate.updatePosition()
 						.then(function (position) {
@@ -32,6 +32,7 @@ angular.module("crowFlies")
 					});            
 				}else{
 					displayOnMap(geolocate.getCurrentPosition());
+					scope.internalControl.updateCurrentPositionMarker(geolocate.getCurrentPosition());
 				};
 				
 				if (scope.internalControl.options.nests){
@@ -56,7 +57,6 @@ angular.module("crowFlies")
 				function displayOnMap(position){
 					centreCoords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 					scope.internalControl.map.setCenter(centreCoords);
-					createCurrentPositionMarker(position);
 				};
 			}
 
@@ -73,20 +73,26 @@ angular.module("crowFlies")
 					scope.markers.push(marker);
 				})
 			}
-			
-			var createCurrentPositionMarker = function (position){
-				currentPositionMarker = new google.maps.Marker({
-					position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
-					map: scope.internalControl.map,
-					icon:'img/small-circle.png'
-				})
-			}
+
 			scope.internalControl.updateCurrentPositionMarker=function(position){
+				var positionCoords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 				if (!currentPositionMarker){
-					createCurrentPositionMarker(position);
-				}else{
-					currentPositionMarker.setPosition(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+					currentPositionMarker = new google.maps.Marker({
+						position: positionCoords,
+						map: scope.internalControl.map,
+						icon:'img/green-dot.png'
+					});
+					currentPositionMarker.circle= new google.maps.Circle({
+						map: scope.internalControl.map,
+						center: positionCoords,
+						radius: position.coords.accuracy,
+						fillColor: '#6666ff',
+						strokeColor: '#00004c'
+					})
 				}
+				currentPositionMarker.setPosition(positionCoords);
+				currentPositionMarker.circle.setCenter(positionCoords);
+				currentPositionMarker.circle.setRadius(position.coords.accuracy);
 			}
 
 		}

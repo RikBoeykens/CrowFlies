@@ -6,7 +6,7 @@ app.directive('nestDirective', function () {
     return {
         restrict: "E",
         replace: true,
-        templateUrl: '/js/nests/nestDirective.html',
+        templateUrl: 'js/nests/nestDirective.html',
         scope: {
             nest: "=",
             accuracy: "="
