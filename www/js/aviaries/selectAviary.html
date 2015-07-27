@@ -6,7 +6,7 @@
 <br />
 <div ng-repeat="aviary in recentAviaries()|orderBy:'lastAccessed':true">
 	<i>{{aviary.name}}</i>
-	last seen: {{aviary.lastAccessed| date:'medium'}}
+	(last seen: {{aviary.lastAccessed | date:'short'}})
 	<button type="button" class="btn btn-success" ng-click="getAviary(aviary.id)">Go</button>
 </div>
 <p style="color:red">{{error}}</p>
