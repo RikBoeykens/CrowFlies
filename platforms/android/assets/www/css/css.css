@@ -26,7 +26,8 @@
 }
 
 .deleteLabel{
-    background-color:#00E64D;
+	background-color: #fff;
+	background-color:#00E64D;
 }
 
 body{
@@ -50,4 +51,12 @@ body{
     padding: 0;
     height: 500px;
     border: 1px solid #ccc;
+}
+.navbar > ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.navbar > ul >li {
+    display: inline;
 }

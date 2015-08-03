@@ -2,7 +2,19 @@
 
 var app = angular.module("crowFlies");
 
-app.controller('SelectAviaryCtrl',['$scope', '$location', 'aviaryService', function ($scope, $location, aviaryService) {
+app.controller('SelectAviaryCtrl',['$scope', '$location', 'aviaryService', '$cordovaBarcodeScanner', function ($scope, $location, aviaryService, $cordovaBarcodeScanner) {
+	$scope.scanAviary = function(){
+		$cordovaBarcodeScanner
+			.scan()
+			.then(function(barcodeData) {
+				$scope.aviaryid = barcodeData.text;
+				$scope.getAviary(barcodeData.text);
+			}, function(error) {
+				$scope.error = error;
+			});
+
+
+	}
 	$scope.getAviary = function(aviaryid){
 		$scope.error = "";
 		if (aviaryService.getAviary()&&aviaryService.getAviary().id==aviaryid){

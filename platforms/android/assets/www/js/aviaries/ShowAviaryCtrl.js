@@ -13,7 +13,14 @@ app.controller('ShowAviaryCtrl',['$scope', '$location', '$timeout', 'geolocate',
 		}
   };
 	$timeout(function(){
-		$scope.mapsControl.initMap();
+		if (geolocate.getCurrentPosition()){
+			$scope.mapsControl.initMap();
+		}else{
+			geolocate.updatePosition().then(function(position){
+				$scope.mapsControl.initMap();
+			})
+		}
+		
 	})
 	$scope.currentPosition = geolocate.getCurrentPosition;
 	$scope.aviary = aviaryService.getAviary;

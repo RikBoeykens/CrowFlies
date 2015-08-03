@@ -25,12 +25,11 @@ app.service('aviaryService',['$filter', '$rootScope', 'haversine', 'apiAviaryRep
 		return recentAviaries;
 	}
 	var addRecent = function(aviary){
-		//delete previous record in aviary
 		var found = $filter('filter')(recentAviaries, {id: aviary.id}, true);
 		if (found.length){
-			found[0].lastAccessed = Date();
+			found[0].lastAccessed = new Date();
 		}else{
-			aviary.lastAccessed = Date();
+			aviary.lastAccessed = new Date();
 			recentAviaries.push(aviary);			
 		}
 	}

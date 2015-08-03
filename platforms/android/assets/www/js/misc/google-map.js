@@ -76,7 +76,7 @@ angular.module("crowFlies")
 
 			scope.internalControl.updateCurrentPositionMarker=function(position){
 				var positionCoords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-				if (!currentPositionMarker){
+				if (!currentPositionMarker&&scope.internalControl.map){
 					currentPositionMarker = new google.maps.Marker({
 						position: positionCoords,
 						map: scope.internalControl.map,

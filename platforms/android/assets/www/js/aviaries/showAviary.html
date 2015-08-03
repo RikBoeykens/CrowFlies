@@ -12,10 +12,8 @@
         <nest-directive nest="nest" accuracy="currentPosition().coords.accuracy"></destination>
     </accordion-group>
 </accordion>
-<div>
-    <label ng-hide="aviary().nests.length">No markers, please add markers in the setup page</label>
-</div>
-<map id="map_canvas" control="mapsControl"></map>
+<map id="map_canvas" control="mapsControl" ng-show="currentPosition()"></map>
+<label ng-hide="currentPosition()" class="blink">Getting location data</label>
 <div id="LocationInfo">
     Location last retrieved at {{currentPosition().timestamp | date:'medium'}}
 </div>
